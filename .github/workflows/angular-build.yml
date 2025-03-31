@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: linux-self-hosted-vm
+    runs-on: self-hosted-linux-vm
 
     steps:
       # Checkout the code from the repository
