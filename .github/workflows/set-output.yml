@@ -6,7 +6,7 @@ on:
 
 jobs:
  job1:
-  runs-on: linux-self-hosted-vm
+  runs-on: self-hosted-linux-vm
   outputs:
     name: ${{ steps.set-output.outputs.name }}
     age: ${{ steps.set-output.outputs.age }}
