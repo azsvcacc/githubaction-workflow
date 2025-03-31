@@ -1,6 +1,12 @@
 name: Built-in variables
  
 on:
+  push:
+    branches:
+      - angular
+  pull_request:
+    branches:
+      - angular
   workflow_dispatch:
  
 jobs:
