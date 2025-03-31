@@ -24,7 +24,7 @@ jobs:
         echo "The value of output age is ${{ steps.set-output.outputs.age }}"
 
  job2:
-  runs-on: linux-self-hosted-vm
+  runs-on: self-hosted-linux-vm
   needs: job1
   steps:
     - name: access output from job1
