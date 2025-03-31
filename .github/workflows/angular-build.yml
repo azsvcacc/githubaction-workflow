@@ -52,5 +52,3 @@ jobs:
           path: artifact
       - name: display
         run: ls -R artifact
-
-  
