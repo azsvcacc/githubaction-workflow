@@ -37,21 +37,20 @@ jobs:
           # Artifact name
           name: build-artifacts
           path: dist
-  pre-deploy:
-    runs-on: self-hosted-linux-vm
-    # needs: build
-    steps:
-      # Checkout the code from the repository
-      - name: test
-        run: echo "test-predrploy"
+
   deploy:
     runs-on: self-hosted-linux-vm
     needs: 
       - build
-      - pre-deploy
     steps:
       # Checkout the code from the repository
-      - name: test
-        run: echo "test-deploy"
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.2.1
+        with:
+          # Artifact name
+          name: build-artifacts
+          path: artifact
+      - name: display
+        run: ls -R artifact
 
   
