@@ -38,14 +38,14 @@ jobs:
           name: build-artifacts
           path: dist
   pre-deploy:
-    runs-on: linux-self-hosted-vm
+    runs-on: self-hosted-linux-vm
     # needs: build
     steps:
       # Checkout the code from the repository
       - name: test
         run: echo "test-predrploy"
   deploy:
-    runs-on: linux-self-hosted-vm
+    runs-on: self-hosted-linux-vm
     needs: 
       - build
       - pre-deploy
