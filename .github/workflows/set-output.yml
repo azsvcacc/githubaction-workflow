@@ -1,0 +1,31 @@
+name: Step Output
+
+on:
+ push:
+   branches: [angular]
+
+jobs:
+ job1:
+  runs-on: linux-self-hosted-vm
+  outputs:
+    name: ${{ steps.set-output.outputs.name }}
+    age: ${{ steps.set-output.outputs.age }}
+  steps:
+    - name: set output
+      id: set-output
+      shell: bash
+      run: |
+        echo "name=InterviewPro" >> $GITHUB_OUTPUT
+        echo "age=23" >> $GITHUB_OUTPUT
+        
+    - name: access output
+      run: |
+        echo "The value of output name is ${{ steps.set-output.outputs.name }}"
+        echo "The value of output age is ${{ steps.set-output.outputs.age }}"
+
+ job2:
+  runs-on: linux-self-hosted-vm
+  needs: job1
+  steps:
+    - name: access output from job1
+      run: echo ${{ needs.job1.outputs.name }}   
