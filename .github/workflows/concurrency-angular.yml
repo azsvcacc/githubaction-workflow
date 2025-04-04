@@ -1,0 +1,44 @@
+name: Build Angular Application
+
+on:
+  push:
+    branches:
+      - angular
+  pull_request:
+    branches:
+      - angular
+
+concurrency:
+  group: ci-${{ github.workflow }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: self-hosted-linux-vm
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Specify the Node.js version you need
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm install
+        
+      # Install project dependencies
+      - name: build
+        run: npm run build
+      # Artifactory upload
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          # Artifact name
+          name: build-artifacts
+          path: dist
+  
+  
