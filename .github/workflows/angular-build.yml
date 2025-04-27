@@ -12,7 +12,7 @@ on:
 
 jobs:
   Nodejs-Build:
-    uses: github-composite-action-repo/.github/workflows/nodejs-build.yml@main
+    uses: azsvcacc/githubaction-workflow/.github/workflows/angular-build.yml@main
     with:
       node-version: "20.x"      # Use a specific Node.js version
       working-directory: "." # Specify the working directory
