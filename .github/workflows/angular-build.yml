@@ -1,12 +1,14 @@
 name: Build Angular Application
 
 on:
+  workflow_dispatch:
+ 
   push:
     branches:
-      - angular
+      - main
   pull_request:
     branches:
-      - angular
+      - main
 
 jobs:
   build:
