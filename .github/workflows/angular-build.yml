@@ -1,7 +1,7 @@
 name: Angular Application
 
 on:
-  #workflow_dispatch:
+  workflow_dispatch:
  
   push:
     branches:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   Nodejs-Build:
-    uses: azsvcacc/githubaction-workflow/.github/workflows/angular-build.yml@main
+    uses: azsvcacc/github-composite-action-repo/.github/workflows/nodejs-build.yml@main
     with:
       node-version: "20.x"      # Use a specific Node.js version
       working-directory: "." # Specify the working directory
