@@ -2,7 +2,6 @@ name: Angular Application
 
 on:
   workflow_dispatch:
- 
   push:
     branches:
       - main
@@ -11,9 +10,14 @@ on:
       - main
 
 jobs:
+  build:
+    runs-on: self-hosted-linux-vm
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
   Nodejs-Build:
     uses: azsvcacc/github-composite-action-repo/.github/workflows/nodejs-build.yml@main
     with:
       node-version: "20.x"      # Use a specific Node.js version
-      working-directory: "." # Specify the working directory
- 
+      working-directory: "."    # Specify the working directory
