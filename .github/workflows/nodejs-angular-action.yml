@@ -15,4 +15,3 @@ jobs:
           nodejsVersion: 18.20.4
           github-token: ${{ secrets.GIT_TOKEN }}
 
-
