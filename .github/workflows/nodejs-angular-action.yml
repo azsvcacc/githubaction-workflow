@@ -7,7 +7,7 @@ on:
      
 jobs:
   build-deploy:
-    uses: azsvcacc/github-composite-action-repo/.github/workflows/actions/nodejs@main
+    uses: azsvcacc/github-composite-action-repo/.github/actions/nodejs@main
     # secrets: inherit
     with:
       nodejsVersion: 18.20.4
