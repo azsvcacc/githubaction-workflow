@@ -13,11 +13,10 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: self-hosted-linux-vm
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # runs-on: self-hosted-linux-vm
+    # steps:
+    #   - name: Checkout code
+    #     uses: actions/checkout@v3
 
   Nodejs-Build:
     uses: azsvcacc/github-composite-action-repo/.github/workflows/nodejs-build.yml@main
