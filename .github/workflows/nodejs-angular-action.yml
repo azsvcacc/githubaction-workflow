@@ -1,13 +1,17 @@
 name: Build Angular App
-  
+
 on:     
   push:
     branches: [ main ]
   workflow_dispatch:
-     
-jobs:
+
+jobs: 
   build-deploy:
-    uses: azsvcacc/github-composite-action-repo/.github/actions/nodejs@main
-    # secrets: inherit
-    with:
-      nodejsVersion: 18.20.4
+    runs-on: self-hosted-linux-vm
+    steps:
+      - name: Build-Nodejs
+        uses: azsvcacc/github-composite-action-repo/.github/actions/nodejs@main
+        with:
+          nodejsVersion: 18.20.4
+        # secrets: inherit
+
