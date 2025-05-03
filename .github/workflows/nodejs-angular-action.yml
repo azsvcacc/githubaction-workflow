@@ -8,7 +8,6 @@ on:
 jobs:
   build-deploy:
     uses: azsvcacc/github-composite-action-repo/.github/workflows/actions/nodejs@main
-    secrets: inherit
+    # secrets: inherit
     with:
-      pythonVersion: 3.10
       nodejsVersion: 18.20.4
