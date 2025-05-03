@@ -13,5 +13,6 @@ jobs:
         uses: azsvcacc/github-composite-action-repo/.github/actions/nodejs@main
         with:
           nodejsVersion: 18.20.4
+          github-token: ${{ secrets.GIT_TOKEN }}
         # secrets: inherit
 
