@@ -1,8 +1,4 @@
 name: Angular Application
-permissions:
-  id-token: write
-  contents: read
-
 on:
   workflow_dispatch:
   push:
@@ -13,11 +9,6 @@ on:
       - main
 
 jobs:
-    # runs-on: self-hosted-linux-vm
-    # steps:
-    #   - name: Checkout code
-    #     uses: actions/checkout@v3
-
   Nodejs-Build:
     uses: azsvcacc/github-composite-action-repo/.github/workflows/nodejs-build.yml@main
     with:
