@@ -1,0 +1,14 @@
+name: Build Angular App
+  
+on:     
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+     
+jobs:
+  build-deploy:
+    uses: azsvcacc/github-composite-action-repo/.github/workflows/actions/nodejs@main
+    secrets: inherit
+    with:
+      pythonVersion: 3.10
+      nodejsVersion: 18.20.4
