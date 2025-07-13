@@ -1,0 +1,50 @@
+name: Terraform GCP Deployment
+
+on:
+  push:
+    branches:
+      - Gcp-Terraform-branch
+      - main
+    paths:
+      - terraform/**
+
+jobs:
+  terraform:
+    name: Terraform GCP Plan & Apply
+    runs-on: self-hosted-linux-vm
+    environment: dev  # ✅ Binds this job to the `dev` environment in GitHub
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.4
+
+      - name: Setup GCP credentials
+        run: echo '${{ secrets.GCP_KEY }}' > $GOOGLE_APPLICATION_CREDENTIALS
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format Check
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
