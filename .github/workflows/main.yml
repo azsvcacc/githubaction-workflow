@@ -47,3 +47,4 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+        
