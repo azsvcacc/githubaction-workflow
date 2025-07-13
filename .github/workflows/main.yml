@@ -6,7 +6,7 @@ on:
       - Gcp-Terraform-branch
       - main
     paths:
-      - ${{ github.workspace }}/terraform/**
+      - terraform/**
   workflow_dispatch:    
 
 jobs:
