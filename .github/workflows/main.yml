@@ -35,6 +35,10 @@ jobs:
       - name: Setup GCP credentials
         run: echo '${{ secrets.GCP_KEY }}'
 
+      - name: Set dynamic env
+        run: |
+          echo "MY_SECRET_TOKEN=${{ secrets.MY_SECRET }}" >> $GITHUB_ENV
+
       - name: Terraform Init
         run: terraform init
 
