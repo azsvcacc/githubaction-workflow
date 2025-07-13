@@ -36,8 +36,9 @@ jobs:
 
       - name: Write GCP Credentials to File
         run: |
-          echo '${{ secrets.GCP_KEY }}' > gcp-key.json
+          echo '${{ secrets.GCP_KEY }}' > ${{ github.workspace }}/gcp-key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/gcp-key.json" >> $GITHUB_ENV
+
 
       - name: Terraform Init
         run: terraform init
