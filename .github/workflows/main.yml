@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - Gcp-Terraform-branch
-
+      - main
     paths:
       - terraform/**
+  workflow_dispatch:    
 
 jobs:
   terraform:
