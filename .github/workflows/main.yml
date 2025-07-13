@@ -7,42 +7,37 @@ on:
       - main
     paths:
       - terraform/**
-  workflow_dispatch:    
+  workflow_dispatch:
 
 jobs:
   terraform:
     name: Terraform GCP Plan & Apply
     runs-on: self-hosted-linux-vm
-    environment: dev  # ✅ Binds this job to the `dev` environment in GitHub
+    environment: dev  # GitHub environment name
 
     defaults:
       run:
         shell: bash
         working-directory: terraform
 
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_KEY }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.8.4
       - name: Setup Node.js 18
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.4
 
-      - name: Setup GCP credentials
-        run: echo '${{ secrets.GCP_KEY }}'
-
-      - name: Set dynamic env
+      - name: Write GCP Credentials to File
         run: |
-          echo "MY_SECRET_TOKEN=${{ secrets.MY_SECRET }}" >> $GITHUB_ENV
+          echo '${{ secrets.GCP_KEY }}' > gcp-key.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/gcp-key.json" >> $GITHUB_ENV
 
       - name: Terraform Init
         run: terraform init
