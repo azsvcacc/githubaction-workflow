@@ -33,7 +33,7 @@ jobs:
           terraform_version: 1.8.4
 
       - name: Setup GCP credentials
-        run: echo '${{ secrets.GCP_KEY }}' > $GOOGLE_APPLICATION_CREDENTIALS
+        run: echo '${{ secrets.GCP_KEY }}'
 
       - name: Terraform Init
         run: terraform init
@@ -45,7 +45,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+        run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="gcp_credentials_file=$GOOGLE_APPLICATION_CREDENTIALS"
+        run: terraform apply -auto-approve
